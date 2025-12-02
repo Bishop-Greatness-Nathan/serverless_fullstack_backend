@@ -102,8 +102,14 @@ const handler = (0, serverless_http_1.default)(app);
 // final export for vercel
 function default_1(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield connectDB();
-        return handler(req, res);
+        try {
+            yield connectDB();
+            return handler(req, res);
+        }
+        catch (err) {
+            console.error(err);
+            res.status(500).send('Internal Server Error');
+        }
     });
 }
 exports.default = default_1;
