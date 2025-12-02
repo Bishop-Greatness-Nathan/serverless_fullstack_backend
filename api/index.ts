@@ -79,7 +79,12 @@ async function connectDB() {
 const handler = serverless(app);
 
 // final export for vercel
-export default async function (req: Request, res: Response) {
-  await connectDB();
-  return handler(req, res);
+export default async function (req: any, res: any) {
+  try {
+    await connectDB();
+    return handler(req, res);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
 }
