@@ -66,6 +66,7 @@ app.use(errorHandler);
 let isConnected = false;
 
 async function connectDB() {
+  console.log('started...');
   if (isConnected) return;
 
   await mongoose.connect(process.env.MONGO_URL as string);
