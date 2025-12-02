@@ -90,6 +90,7 @@ app.use(errorHandler_1.default);
 let isConnected = false;
 function connectDB() {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log('started...');
         if (isConnected)
             return;
         yield mongoose_1.default.connect(process.env.MONGO_URL);
